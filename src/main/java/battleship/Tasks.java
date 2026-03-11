@@ -74,8 +74,10 @@ public class Tasks {
 
 						if (game.getRemainingShips() == 0) {
 							game.over();
-							System.exit(0);
-						}
+// Alteração para gerar pdf
+							PDFGenerator.gerarRelatorio(game.getAlienMoves());
+							// ---------------------
+							System.exit(0);						}
 					}
 					break;
 				case SIMULA:
@@ -93,8 +95,10 @@ public class Tasks {
 
 						if (game.getRemainingShips() == 0) {
 							game.over();
-							System.exit(0);
-						}
+// Alteração para gerar pdf
+							PDFGenerator.gerarRelatorio(game.getAlienMoves());
+							// ---------------------
+							System.exit(0);						}
 					}
 					break;
 				case TIROS:
@@ -104,6 +108,7 @@ public class Tasks {
                 case AJUDA:
                     menuHelp();
                     break;
+
 				default:
 					System.out.println("Que comando é esse??? Repete ...");
 			}
