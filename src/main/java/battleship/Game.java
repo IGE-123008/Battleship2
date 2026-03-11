@@ -157,6 +157,8 @@ public class Game implements IGame
 	private Integer countSinks;
 	private int moveNumber;
 
+	private final DatabaseManager db = new DatabaseManager();
+
 	//------------------------------------------------------------------
 	public Game(IFleet myFleet)
 	{
@@ -330,8 +332,18 @@ public class Game implements IGame
 
 		List<IPosition> alreadyShot = new ArrayList<IPosition>();
 		for (IPosition pos : shots) {
-			shotResults.add(fireSingleShot(pos, alreadyShot.contains(pos)));
+			ShotResult res = fireSingleShot(pos, alreadyShot.contains(pos));
+			shotResults.add(res);
 			alreadyShot.add(pos);
+
+			String status = "Água";
+			if (res.sunk()) status = "Afundado (" + res.ship().getCategory() + ")";
+			else if (res.ship() != null) status = "Tiro (" + res.ship().getCategory() + ")";
+			else if (res.repeated()) status = "Repetido";
+			else if (!res.valid()) status = "Inválido";
+
+			// Gravar na base de dados
+			db.saveMove("Inimigo", pos.getRow(), pos.getColumn(), status);
 		}
 
 		Move move = new Move(moveNumber, shots, shotResults);
