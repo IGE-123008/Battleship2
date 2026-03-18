@@ -22,6 +22,7 @@ Nota: Não pudemos seguir a ordem devida relativamente aos comentários do pull 
 - [Roadmap](#-roadmap)
 - [Contributing](#-contributing)
 - [Promp LLM](#-promp-llm)
+- [Video Yotube](#-video-youtube)
 
 ---
 
@@ -192,6 +193,11 @@ Alvos a afundar:
 
 - **Se a tua frota for afundada:** *"Declaro a derrota com honra. Bem jogado, Almirante."*
 - **Se venceres:** *"Sou um vencedor magnânimo. A sua frota repousa no fundo do oceano."*
+
+---
+
+### Vídeo Youtube
+- https://youtu.be/i5Xx8cu2taE
 
 ---
 
