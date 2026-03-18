@@ -22,7 +22,7 @@ Nota: Não pudemos seguir a ordem devida relativamente aos comentários do pull 
 - [Roadmap](#-roadmap)
 - [Contributing](#-contributing)
 - [Promp LLM](#-promp-llm)
-- [Video Yotube](#-video-youtube)
+- [Video Youtube](#-video-youtube)
 
 ---
 
