@@ -45,6 +45,7 @@ public class PDFGenerator {
 
         } catch (Exception e) {
             System.err.println("Erro ao criar PDF: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             document.close();
         }
