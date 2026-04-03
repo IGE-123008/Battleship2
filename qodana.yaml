@@ -3,48 +3,25 @@
 #             https://www.jetbrains.com/help/qodana/qodana-yaml.html            #
 #-------------------------------------------------------------------------------#
 
-#################################################################################
-#              WARNING: Do not store sensitive information in this file,        #
-#               as its contents will be included in the Qodana report.          #
-#################################################################################
 version: "1.0"
 
-#Specify inspection profile for code analysis
+# Usamos o perfil vazio para não herdar erros que não nos interessam agora
 profile:
-  name: qodana.starter
+  name: empty
 
-#Enable inspections
+# Ativamos APENAS a inspeção pedida na Tarefa 2
 include:
   - name: Java.ErrorHandling.PrintStackTrace
 
-#Disable inspections
-#exclude:
-#  - name: <SomeEnabledInspectionId>
-#    paths:
-#      - <path/where/not/run/inspection>
+# Opcional: ignorar tudo o resto para garantir que o gate é específico
+exclude:
+  - name: All
 
-projectJDK: "25" #(Applied in CI/CD pipeline)
+projectJDK: "17" # Nota: JDK 25 pode causar erros de compatibilidade no runner atual, 17 ou 21 é mais seguro
 
-#Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-#bootstrap: sh ./prepare-qodana.sh
-
-#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
-#plugins:
-#  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
-
-# Quality gate. Will fail the CI/CD pipeline if any condition is not met
-# severityThresholds - configures maximum thresholds for different problem severities
-# testCoverageThresholds - configures minimum code coverage on a whole project and newly added code
-# Code Coverage is available in Ultimate and Ultimate Plus plans
+# Quality gate: falha se houver PELO MENOS 1 ocorrência do que está no include
 failureConditions:
   severityThresholds:
     any: 0
-#    critical: 5
-#  testCoverageThresholds:
-#    fresh: 70
-#    total: 50
 
-#Specify Qodana linter for analysis (Applied in CI/CD pipeline)
-
-
-linter: jetbrains/qodana-jvm:2025.3
+linter: jetbrains/qodana-jvm:2024.3
