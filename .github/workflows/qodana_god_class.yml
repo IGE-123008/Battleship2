@@ -1,0 +1,25 @@
+# 122992 - Leonor Pereira Correia
+# Quality Gate para detetar God Class (Overly Complex Class)
+name: Qodana God Class Detection
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2023.2
+        with:
+          # O fail-threshold 0 faz o build falhar se encontrar 1 cheiro.
+          args: --fail-threshold,0
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}

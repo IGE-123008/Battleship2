@@ -3,6 +3,7 @@ package battleship;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -445,11 +446,15 @@ public class Game implements IGame
 	{
 		Game.printBoard(this.alienFleet, this.myMoves, show_shots, show_legend);
 	}
-
 	public void over() {
-			System.out.println();
-			System.out.println("+--------------------------------------------------------------+");
-			System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
-			System.out.println("+--------------------------------------------------------------+");
+		System.out.println();
+
+		String mensagem = "Parabéns! Afundaste todos os navios!";
+		String mensagemFormatada = StringUtils.upperCase(mensagem);
+
+		System.out.println(mensagemFormatada);
+		System.out.println("+--------------------------------------------------------------+");
+		System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
+		System.out.println("+--------------------------------------------------------------+");
 	}
 }
