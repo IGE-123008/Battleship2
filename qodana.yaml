@@ -16,6 +16,7 @@ profile:
 #Enable inspections
 include:
   - name: Java.ErrorHandling.PrintStackTrace
+  - name: JavaOverlyComplexClass # Inspeção God Class
 
 #Disable inspections
 #exclude:
