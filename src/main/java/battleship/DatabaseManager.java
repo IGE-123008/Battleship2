@@ -12,11 +12,9 @@ public class DatabaseManager {
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
-    public DatabaseManager() {
-        setupDatabase();
-    }
+    public DatabaseManager() { setupDatabase(); }
 
-    // Cria a tabela de jogadas (se ainda não existir)
+    // Cria a tabela de jogadas se ainda não existir
     private void setupDatabase() {
         String sql = "CREATE TABLE IF NOT EXISTS moves (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY, " +
