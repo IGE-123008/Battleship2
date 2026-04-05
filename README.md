@@ -1,4 +1,5 @@
 *As contas IGE-123008 e the-bat-harpy pertencem à mesma aluna (Carolina Avelãs, número 123008).
+As contas IGE-122992 e leonnnor pertencem à mesma pessoa (Leonor Correia, 122992)
 
 Nota: Não pudemos seguir a ordem devida relativamente aos comentários do pull request (a colega 123008 comentou relativamente à colega 122992 e vice-versa, e a colega 122982 comentou relativamente à colega 123029 e vice-versa).
 
