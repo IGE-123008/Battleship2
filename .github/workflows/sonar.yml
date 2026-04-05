@@ -27,4 +27,4 @@ jobs:
         run: >
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
           -Dsonar.projectKey=ige-123008 
-          -Dsonar.organization=Carolina Avelãs
+          -Dsonar.organization=ige-123008
