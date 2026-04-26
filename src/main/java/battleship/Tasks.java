@@ -73,33 +73,12 @@ public class Tasks {
 						game.printMyBoard(true, false);
 
 						if (game.getRemainingShips() == 0) {
-							game.over();
-// Alteração para gerar pdf
-							PDFGenerator.gerarRelatorio(game.getAlienMoves());
-							// ---------------------
-							System.exit(0);						}
+							terminateGame(game);
+						}
 					}
 					break;
 				case SIMULA:
-					if (game != null) {
-						while (game.getRemainingShips() > 0){
-							game.randomEnemyFire();
-							myFleet.printStatus();
-							game.printMyBoard(true, false);
-							try {
-								Thread.sleep(3000);
-							} catch (InterruptedException e) {
-								Thread.currentThread().interrupt(); // Best practice: restore interrupt status
-							}
-						}
-
-						if (game.getRemainingShips() == 0) {
-							game.over();
-// Alteração para gerar pdf
-							PDFGenerator.gerarRelatorio(game.getAlienMoves());
-							// ---------------------
-							System.exit(0);						}
-					}
+					runGameSimulation(game, myFleet);
 					break;
 				case TIROS:
 					if (game != null)
@@ -112,10 +91,43 @@ public class Tasks {
 				default:
 					System.out.println("Que comando é esse??? Repete ...");
 			}
-			System.out.print("> ");
-			command = in.next();
+			command = readCommand(in);
 		}
 		System.out.println(GOODBYE_MESSAGE);
+	}
+
+	private static String readCommand(Scanner in) {
+		String command;
+		System.out.print("> ");
+		command = in.next();
+		return command;
+	}
+
+	private static void runGameSimulation(IGame game, IFleet myFleet) {
+		if (game != null) {
+			while (game.getRemainingShips() > 0){
+				game.randomEnemyFire();
+				myFleet.printStatus();
+				game.printMyBoard(true, false);
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt(); // Best practice: restore interrupt status
+				}
+			}
+
+			if (game.getRemainingShips() == 0) {
+				terminateGame(game);
+			}
+		}
+	}
+
+	private static void terminateGame(IGame game) {
+		game.over();
+// Alteração para gerar pdf
+		PDFGenerator.gerarRelatorio(game.getAlienMoves());
+		// ---------------------
+		System.exit(0);
 	}
 
 	/**
