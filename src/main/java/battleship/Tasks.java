@@ -121,7 +121,7 @@ public class Tasks {
 	/**
 	 * This function provides help information about the menu commands.
 	 */
-	public static void menuHelp() {
+	private static void menuHelp() {
 		System.out.println("======================= AJUDA DO MENU =========================");
 		System.out.println("Digite um dos comandos abaixo para interagir com o jogo:");
 		System.out.println("- " + GERAFROTA + ": Gera uma frota aleatória de navios.");
@@ -140,7 +140,7 @@ public class Tasks {
 	 * @param in The scanner to read from
 	 * @return The fleet that has been built
 	 */
-	public static Fleet buildFleet(Scanner in) {
+	private static Fleet buildFleet(Scanner in) {
 
 		assert in != null;
 
@@ -168,7 +168,7 @@ public class Tasks {
 	 * @param in The scanner to read from
 	 * @return The created ship based on the data that has been read
 	 */
-	public static Ship readShip(Scanner in) {
+	private static Ship readShip(Scanner in) {
 
 		assert in != null;
 
