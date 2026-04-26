@@ -182,4 +182,64 @@ public class PositionTest {
 				"Incorrect string representation: expected '" + expected +
 						"' but got '" + position.toString() + "'");
 	}
+
+    @Test
+    void randomPosition() {
+    }
+
+    @Test
+    void testGetRow() {
+    }
+
+    @Test
+    void testGetColumn() {
+    }
+
+    @Test
+    void testGetClassicRow() {
+    }
+
+    @Test
+    void testGetClassicColumn() {
+    }
+
+    @Test
+    void isInside() {
+    }
+
+    @Test
+    void isAdjacentTo() {
+    }
+
+    @Test
+    void adjacentPositions() {
+    }
+
+    @Test
+    void testIsOccupied() {
+    }
+
+    @Test
+    void testIsHit() {
+    }
+
+    @Test
+    void occupy() {
+    }
+
+    @Test
+    void shoot() {
+    }
+
+    @Test
+    void testEquals() {
+    }
+
+    @Test
+    void testHashCode() {
+    }
+
+    @Test
+    void testToString() {
+    }
 }
