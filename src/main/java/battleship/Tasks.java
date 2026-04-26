@@ -73,33 +73,12 @@ public class Tasks {
 						game.printMyBoard(true, false);
 
 						if (game.getRemainingShips() == 0) {
-							game.over();
-// Alteração para gerar pdf
-							PDFGenerator.gerarRelatorio(game.getAlienMoves());
-							// ---------------------
-							System.exit(0);						}
+							terminateGame(game);
+						}
 					}
 					break;
 				case SIMULA:
-					if (game != null) {
-						while (game.getRemainingShips() > 0){
-							game.randomEnemyFire();
-							myFleet.printStatus();
-							game.printMyBoard(true, false);
-							try {
-								Thread.sleep(3000);
-							} catch (InterruptedException e) {
-								Thread.currentThread().interrupt(); // Best practice: restore interrupt status
-							}
-						}
-
-						if (game.getRemainingShips() == 0) {
-							game.over();
-// Alteração para gerar pdf
-							PDFGenerator.gerarRelatorio(game.getAlienMoves());
-							// ---------------------
-							System.exit(0);						}
-					}
+					runGameSimulation(game, myFleet);
 					break;
 				case TIROS:
 					if (game != null)
@@ -112,16 +91,49 @@ public class Tasks {
 				default:
 					System.out.println("Que comando é esse??? Repete ...");
 			}
-			System.out.print("> ");
-			command = in.next();
+			command = readCommand(in);
 		}
 		System.out.println(GOODBYE_MESSAGE);
+	}
+
+	private static String readCommand(Scanner in) {
+		String command;
+		System.out.print("> ");
+		command = in.next();
+		return command;
+	}
+
+	private static void runGameSimulation(IGame game, IFleet myFleet) {
+		if (game != null) {
+			while (game.getRemainingShips() > 0){
+				game.randomEnemyFire();
+				myFleet.printStatus();
+				game.printMyBoard(true, false);
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt(); // Best practice: restore interrupt status
+				}
+			}
+
+			if (game.getRemainingShips() == 0) {
+				terminateGame(game);
+			}
+		}
+	}
+
+	private static void terminateGame(IGame game) {
+		game.over();
+// Alteração para gerar pdf
+		PDFGenerator.gerarRelatorio(game.getAlienMoves());
+		// ---------------------
+		System.exit(0);
 	}
 
 	/**
 	 * This function provides help information about the menu commands.
 	 */
-	public static void menuHelp() {
+	private static void menuHelp() {
 		System.out.println("======================= AJUDA DO MENU =========================");
 		System.out.println("Digite um dos comandos abaixo para interagir com o jogo:");
 		System.out.println("- " + GERAFROTA + ": Gera uma frota aleatória de navios.");
@@ -140,7 +152,7 @@ public class Tasks {
 	 * @param in The scanner to read from
 	 * @return The fleet that has been built
 	 */
-	public static Fleet buildFleet(Scanner in) {
+	private static Fleet buildFleet(Scanner in) {
 
 		assert in != null;
 
@@ -168,7 +180,7 @@ public class Tasks {
 	 * @param in The scanner to read from
 	 * @return The created ship based on the data that has been read
 	 */
-	public static Ship readShip(Scanner in) {
+	private static Ship readShip(Scanner in) {
 
 		assert in != null;
 
