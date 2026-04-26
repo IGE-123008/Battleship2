@@ -3,6 +3,7 @@
  */
 package battleship;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,19 +39,45 @@ public interface IFleet
 	 */
 	List<IShip> getShipsLike(String category);
 
-	/**
-	 * Gets floating ships.
-	 *
-	 * @return the floating ships
-	 */
-	List<IShip> getFloatingShips();
+    /**
+     * Gets floating ships.
+     *
+     * @return the floating ships
+     */
+    /*
+* (non-Javadoc)
+*
+* @see battleship.IFleet#getFloatingShips()
+*/
+default List<IShip> getFloatingShips()
+{
+        List<IShip> floatingShips = new ArrayList<IShip>();
+        for (IShip s : getShips())
+            if (s.stillFloating())
+                floatingShips.add(s);
 
-	/**
-	 * Gets sunk ships.
-	 *
-	 * @return the sunk ships
-	 */
-	List<IShip> getSunkShips();
+        return floatingShips;
+}
+
+    /**
+     * Gets sunk ships.
+     *
+     * @return the sunk ships
+     */
+    /*
+     * (non-Javadoc)
+     *
+     * @see battleship.IFleet#getSunkShips()
+     */
+    default List<IShip> getSunkShips()
+    {
+        List<IShip> sunkShips = new ArrayList<IShip>();
+        for (IShip s : getShips())
+            if (!s.stillFloating())
+                sunkShips.add(s);
+
+        return sunkShips;
+    }
 
 	/**
 	 * Ship at ship.

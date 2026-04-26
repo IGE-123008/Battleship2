@@ -51,7 +51,7 @@ public class Fleet implements IFleet
 	/**
 	 * The Ships.
 	 */
-	private final List<IShip> ships;
+	protected final List<IShip> ships;
 
 	// -----------------------------------------------------ge
 	/**
@@ -121,48 +121,6 @@ public class Fleet implements IFleet
 
 		return shipsLike;
     }
-
-	/**
-	 * Gets floating ships.
-	 *
-	 * @return the floating ships
-	 */
-	/*
-     * (non-Javadoc)
-     * 
-     * @see battleship.IFleet#getFloatingShips()
-     */
-    @Override
-    public List<IShip> getFloatingShips()
-    {
-		List<IShip> floatingShips = new ArrayList<IShip>();
-		for (IShip s : ships)
-			if (s.stillFloating())
-				floatingShips.add(s);
-
-		return floatingShips;
-    }
-
-	/**
-	 * Gets sunk ships.
-	 *
-	 * @return the sunk ships
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see battleship.IFleet#getSunkShips()
-	 */
-	@Override
-	public List<IShip> getSunkShips()
-	{
-		List<IShip> sunkShips = new ArrayList<IShip>();
-		for (IShip s : ships)
-			if (!s.stillFloating())
-				sunkShips.add(s);
-
-		return sunkShips;
-	}
 
 	/**
 	 * Ship at ship.
