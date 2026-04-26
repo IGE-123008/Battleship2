@@ -76,7 +76,7 @@ public class Fleet implements IFleet
 	/**
 	 * Add ship boolean.
 	 *
-	 * @param s the s
+	 * @param ship the ship
 	 * @return the boolean
 	 */
 	/*
@@ -85,14 +85,14 @@ public class Fleet implements IFleet
      * @see battleship.IFleet#addShip(battleship.IShip)
      */
     @Override
-    public boolean addShip(IShip s)
+    public boolean addShip(IShip ship)
     {
-		assert s != null;
+		assert ship != null;
 
 		boolean result = false;
-		if ((ships.size() <= FLEET_SIZE) && (s.isInsideBoard()) && (!colisionRisk(s)))
+		if ((ships.size() <= FLEET_SIZE) && (ship.isInsideBoard()) && (!colisionRisk(ship)))
 		{
-			ships.add(s);
+			ships.add(ship);
 			result = true;
 		}
 		return result;
