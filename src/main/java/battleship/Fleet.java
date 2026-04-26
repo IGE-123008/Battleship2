@@ -90,7 +90,7 @@ public class Fleet implements IFleet
 		assert s != null;
 
 		boolean result = false;
-		if ((ships.size() <= FLEET_SIZE) && (isInsideBoard(s)) && (!colisionRisk(s)))
+		if ((ships.size() <= FLEET_SIZE) && (s.isInsideBoard()) && (!colisionRisk(s)))
 		{
 			ships.add(s);
 			result = true;
@@ -184,20 +184,6 @@ public class Fleet implements IFleet
 			if (ship.occupies(pos))
 				return ship;
 		return null;
-    }
-
-	/**
-	 * Is inside board boolean.
-	 *
-	 * @param s the s
-	 * @return the boolean
-	 */
-	private boolean isInsideBoard(IShip s)
-    {
-		assert s != null;
-
-		return (s.getLeftMostPos() >= 0 && s.getRightMostPos() <= Game.BOARD_SIZE - 1 && s.getTopMostPos() >= 0
-			&& s.getBottomMostPos() <= Game.BOARD_SIZE - 1);
     }
 
 	/**

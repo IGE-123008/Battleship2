@@ -122,4 +122,17 @@ public interface IShip
 	 * Sink.
 	 */
 	void sink();
+
+    /**
+     * Is inside board boolean.
+     *
+     * @return the boolean
+     */
+    default boolean isInsideBoard()
+{
+        assert this != null;
+
+        return (getLeftMostPos() >= 0 && getRightMostPos() <= Game.BOARD_SIZE - 1 && getTopMostPos() >= 0
+            && getBottomMostPos() <= Game.BOARD_SIZE - 1);
+}
 }
