@@ -33,6 +33,8 @@ public abstract class Ship implements IShip
 	 * The constant BARCA.
 	 */
 	private static final String BARCA = "barca";
+	public static final int BOW_POSITION_INDEX = 0;
+	private final ShipBounds shipBounds = new ShipBounds(this);
 
 	/**
 	 * Create a new ship
@@ -97,7 +99,7 @@ public abstract class Ship implements IShip
 	/**
 	 * The Positions occupied by the ship.
 	 */
-	protected List<IPosition> positions;
+	private List<IPosition> positions;
 
 	/**
 	 * Create ships
@@ -161,10 +163,14 @@ public abstract class Ship implements IShip
 		{
 			List<IPosition> adjacents = position.adjacentPositions();
 			for (IPosition adj : adjacents)
-				if (!getPositions().contains(adj) && !adjacentPositions.contains(adj))
+				if (isNewAdjacentPosition(adj, adjacentPositions))
 					adjacentPositions.add(adj);
 		}
 		return adjacentPositions;
+	}
+
+	private boolean isNewAdjacentPosition(IPosition adj, List<IPosition> adjacentPositions) {
+		return !getPositions().contains(adj) && !adjacentPositions.contains(adj);
 	}
 
 	/**
@@ -242,12 +248,8 @@ public abstract class Ship implements IShip
     @Override
     public int getTopMostPos()
     {
-	int top = getPositions().get(0).getRow();
-	for (int i = 1; i < getSize(); i++)
-	    if (getPositions().get(i).getRow() < top)
-		top = getPositions().get(i).getRow();
-	return top;
-    }
+		return shipBounds.getTopMostPos();
+	}
 
 	/**
 	 * Gets bottom most pos.
@@ -262,12 +264,8 @@ public abstract class Ship implements IShip
     @Override
     public int getBottomMostPos()
     {
-	int bottom = getPositions().get(0).getRow();
-	for (int i = 1; i < getSize(); i++)
-	    if (getPositions().get(i).getRow() > bottom)
-		bottom = getPositions().get(i).getRow();
-	return bottom;
-    }
+		return shipBounds.getBottomMostPos();
+	}
 
 	/**
 	 * Gets left most pos.
@@ -282,12 +280,8 @@ public abstract class Ship implements IShip
     @Override
     public int getLeftMostPos()
     {
-	int left = getPositions().get(0).getColumn();
-	for (int i = 1; i < getSize(); i++)
-	    if (getPositions().get(i).getColumn() < left)
-		left = getPositions().get(i).getColumn();
-	return left;
-    }
+		return shipBounds.getLeftMostPos();
+	}
 
 	/**
 	 * Gets right most pos.
@@ -302,12 +296,8 @@ public abstract class Ship implements IShip
     @Override
     public int getRightMostPos()
     {
-	int right = getPositions().get(0).getColumn();
-	for (int i = 1; i < getSize(); i++)
-	    if (getPositions().get(i).getColumn() > right)
-		right = getPositions().get(i).getColumn();
-	return right;
-    }
+		return shipBounds.getRightMostPos();
+	}
 
 	/**
 	 * Occupies boolean.
