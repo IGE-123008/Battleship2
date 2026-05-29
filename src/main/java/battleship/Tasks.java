@@ -44,7 +44,7 @@ public class Tasks {
 
 		System.out.print("> ");
 		Scanner in = new Scanner(System.in);
-		String command = in.next();
+		String command = in.hasNext() ? in.next() : DESISTIR;
 		while (!command.equals(DESISTIR)) {
 
 			switch (command) {
@@ -113,7 +113,7 @@ public class Tasks {
 					System.out.println("Que comando é esse??? Repete ...");
 			}
 			System.out.print("> ");
-			command = in.next();
+			command = in.hasNext() ? in.next() : DESISTIR;
 		}
 		System.out.println(GOODBYE_MESSAGE);
 	}
