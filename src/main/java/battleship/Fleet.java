@@ -51,7 +51,7 @@ public class Fleet implements IFleet
 	/**
 	 * The Ships.
 	 */
-	private final List<IShip> ships;
+	protected final List<IShip> ships;
 
 	// -----------------------------------------------------ge
 	/**
@@ -76,7 +76,7 @@ public class Fleet implements IFleet
 	/**
 	 * Add ship boolean.
 	 *
-	 * @param s the s
+	 * @param ship the ship
 	 * @return the boolean
 	 */
 	/*
@@ -85,14 +85,14 @@ public class Fleet implements IFleet
      * @see battleship.IFleet#addShip(battleship.IShip)
      */
     @Override
-    public boolean addShip(IShip s)
+    public boolean addShip(IShip ship)
     {
-		assert s != null;
+		assert ship != null;
 
 		boolean result = false;
-		if ((ships.size() <= FLEET_SIZE) && (isInsideBoard(s)) && (!colisionRisk(s)))
+		if ((ships.size() <= FLEET_SIZE) && (ship.isInsideBoard()) && (!colisionRisk(ship)))
 		{
-			ships.add(s);
+			ships.add(ship);
 			result = true;
 		}
 		return result;
@@ -123,48 +123,6 @@ public class Fleet implements IFleet
     }
 
 	/**
-	 * Gets floating ships.
-	 *
-	 * @return the floating ships
-	 */
-	/*
-     * (non-Javadoc)
-     * 
-     * @see battleship.IFleet#getFloatingShips()
-     */
-    @Override
-    public List<IShip> getFloatingShips()
-    {
-		List<IShip> floatingShips = new ArrayList<IShip>();
-		for (IShip s : ships)
-			if (s.stillFloating())
-				floatingShips.add(s);
-
-		return floatingShips;
-    }
-
-	/**
-	 * Gets sunk ships.
-	 *
-	 * @return the sunk ships
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see battleship.IFleet#getSunkShips()
-	 */
-	@Override
-	public List<IShip> getSunkShips()
-	{
-		List<IShip> sunkShips = new ArrayList<IShip>();
-		for (IShip s : ships)
-			if (!s.stillFloating())
-				sunkShips.add(s);
-
-		return sunkShips;
-	}
-
-	/**
 	 * Ship at ship.
 	 *
 	 * @param pos the pos
@@ -184,20 +142,6 @@ public class Fleet implements IFleet
 			if (ship.occupies(pos))
 				return ship;
 		return null;
-    }
-
-	/**
-	 * Is inside board boolean.
-	 *
-	 * @param s the s
-	 * @return the boolean
-	 */
-	private boolean isInsideBoard(IShip s)
-    {
-		assert s != null;
-
-		return (s.getLeftMostPos() >= 0 && s.getRightMostPos() <= Game.BOARD_SIZE - 1 && s.getTopMostPos() >= 0
-			&& s.getBottomMostPos() <= Game.BOARD_SIZE - 1);
     }
 
 	/**

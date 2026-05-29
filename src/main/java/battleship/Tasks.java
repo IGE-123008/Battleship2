@@ -13,7 +13,7 @@ public class Tasks {
 	/**
 	 * The constant LOGGER.
 	 */
-	private static final Logger LOGGER = LogManager.getLogger(Tasks.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	/**
 	 * The constant GOODBYE_MESSAGE.
@@ -44,7 +44,7 @@ public class Tasks {
 
 		System.out.print("> ");
 		Scanner in = new Scanner(System.in);
-		String command = in.hasNext() ? in.next() : DESISTIR;
+		String command = in.next();
 		while (!command.equals(DESISTIR)) {
 
 			switch (command) {
@@ -113,7 +113,7 @@ public class Tasks {
 					System.out.println("Que comando é esse??? Repete ...");
 			}
 			System.out.print("> ");
-			command = in.hasNext() ? in.next() : DESISTIR;
+			command = in.next();
 		}
 		System.out.println(GOODBYE_MESSAGE);
 	}

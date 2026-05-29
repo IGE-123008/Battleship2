@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PDFGenerator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">battleship</a>
+</div>
+
+<h1>Coverage Summary for Class: PDFGenerator (battleship)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PDFGenerator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package battleship;
+&nbsp;
+&nbsp;import com.lowagie.text.Document;
+&nbsp;import com.lowagie.text.Font;
+&nbsp;import com.lowagie.text.FontFactory;
+&nbsp;import com.lowagie.text.Paragraph;
+&nbsp;import com.lowagie.text.pdf.PdfWriter;
+&nbsp;import java.io.FileOutputStream;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="nc">&nbsp;public class PDFGenerator {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gera um ficheiro PDF com o histórico de jogadas.
+&nbsp;     * @param historico Lista de movimentos (alienMoves) do jogo.
+&nbsp;     */
+&nbsp;    public static void gerarRelatorio(List&lt;IMove&gt; historico) {
+<b class="nc">&nbsp;        Document document = new Document();</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            PdfWriter.getInstance(document, new FileOutputStream(&quot;Historico_Battleship.pdf&quot;));</b>
+<b class="nc">&nbsp;            document.open();</b>
+&nbsp;
+&nbsp;            // Configuração de Fontes
+<b class="nc">&nbsp;            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);</b>
+<b class="nc">&nbsp;            Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);</b>
+&nbsp;
+<b class="nc">&nbsp;            document.add(new Paragraph(&quot;RELATÓRIO DE JOGO - BATALHA NAVAL\n&quot;, titleFont));</b>
+<b class="nc">&nbsp;            document.add(new Paragraph(&quot;Gerado automaticamente pelo sistema\n&quot;, FontFactory.getFont(FontFactory.HELVETICA, 10)));</b>
+<b class="nc">&nbsp;            document.add(new Paragraph(&quot;------------------------------------------------------------------\n\n&quot;));</b>
+&nbsp;
+<b class="nc">&nbsp;            if (historico.isEmpty()) {</b>
+<b class="nc">&nbsp;                document.add(new Paragraph(&quot;Nenhuma jogada foi registada.&quot;));</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                for (IMove m : historico) {</b>
+<b class="nc">&nbsp;                    document.add(new Paragraph(&quot;JOGADA Nº &quot; + m.getNumber(), headerFont));</b>
+<b class="nc">&nbsp;                    document.add(new Paragraph(&quot;Posições visadas: &quot; + m.getShots().toString()));</b>
+&nbsp;
+<b class="nc">&nbsp;                    String resultado = m.processEnemyFire(false);</b>
+<b class="nc">&nbsp;                    document.add(new Paragraph(&quot;Resultado: &quot; + resultado));</b>
+<b class="nc">&nbsp;                    document.add(new Paragraph(&quot; &quot;)); // Espaçamento</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            System.out.println(&quot;\n[PDF] Relatório gerado com sucesso: Historico_Battleship.pdf&quot;);</b>
+&nbsp;
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            System.err.println(&quot;Erro ao criar PDF: &quot; + e.getMessage());</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        } finally {
+&nbsp;            document.close();
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-04-26 23:05</div>
+</div>
+</body>
+</html>

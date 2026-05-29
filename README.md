@@ -1,4 +1,7 @@
+![Java CI with Maven](https://github.com/IGE-122982/Battleship2/actions/workflows/tests.yml/badge.svg)
+
 *As contas IGE-123008 e the-bat-harpy pertencem à mesma aluna (Carolina Avelãs, número 123008).
+As contas IGE-122992 e leonnnor pertencem à mesma pessoa (Leonor Correia, 122992)
 
 Nota: Não pudemos seguir a ordem devida relativamente aos comentários do pull request (a colega 123008 comentou relativamente à colega 122992 e vice-versa, e a colega 122982 comentou relativamente à colega 123029 e vice-versa).
 
@@ -198,6 +201,20 @@ Alvos a afundar:
 
 ### Vídeo Youtube
 - https://youtu.be/i5Xx8cu2taE
+
+---
+
+## Integração Contínua (CI)
+
+Este projeto utiliza **GitHub Actions** para garantir a qualidade do código. 
+
+### Workflow: Java CI with Maven
+- **Gatilho:** O workflow é executado automaticamente a cada `push` ou `pull request` para o ramo `main`.
+- **Ações executadas:**
+  1. Configuração do ambiente Java (JDK 17).
+  2. Compilação do projeto com Maven.
+  3. Execução de todos os **Testes Unitários** (`mvn test`).
+- **Objetivo:** Garantir que nenhuma alteração ou refabricação introduz erros no sistema (regressões).
 
 ---
 

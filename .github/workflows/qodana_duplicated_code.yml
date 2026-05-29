@@ -1,0 +1,35 @@
+# Raquel Almeida Nº122982
+name: Qodana Code Quality
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+
+jobs:
+  qodana:
+    name: Run Qodana Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK (if needed)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Qodana
+        uses: JetBrains/qodana-action@v2024.2
+        with:
+          args: --save-report
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+
+      - name: Upload Qodana report
+        uses: actions/upload-artifact@v4
+        with:
+          name: qodana-report
+          path: qodana/report

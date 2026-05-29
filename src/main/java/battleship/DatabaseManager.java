@@ -12,9 +12,7 @@ public class DatabaseManager {
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
-    public DatabaseManager() {
-        setupDatabase();
-    }
+    public DatabaseManager() { setupDatabase(); }
 
     // Cria a tabela de jogadas se ainda não existir
     private void setupDatabase() {
